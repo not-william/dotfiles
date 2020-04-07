@@ -101,12 +101,3 @@ source $ZSH/oh-my-zsh.sh
 
 # Turn on history saving after quitting shell
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-
-# FTI Config Part
-mergeawsid="i-0d5c6c2e5187f38a7"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/will/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/will/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/will/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/will/google-cloud-sdk/completion.zsh.inc'; fi

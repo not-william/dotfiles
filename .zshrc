@@ -101,3 +101,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Turn on history saving after quitting shell
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+
+# exa aliases
+alias l="exa -l"
+alias la="exa -la"

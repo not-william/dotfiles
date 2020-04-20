@@ -17,8 +17,11 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'michal-h21/vim-zettel'
 
-" vim airline
 Plugin 'vim-airline/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'python-mode/python-mode'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -35,8 +38,6 @@ filetype plugin on
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-
-
 set shell=/bin/bash
 runtime macros/matchit.vim
 
@@ -44,9 +45,21 @@ set ttyfast
 set lazyredraw
 
 " Toggle nerdtree with F10
-map <F10> :NERDTreeToggle<CR>
+map <Leader>t :NERDTreeToggle<CR>
 " Current file in nerdtree
-map <F9> :NERDTreeFind<CR>
+map <Leader>c :NERDTreeFind<CR>
+" Show hidden dot files in NERDTree
+let NERDTreeShowHidden=1
+" load up NERDTree
+autocmd vimenter * NERDTree
+" move NERDTree to the right
+let g:NERDTreeWinPos = "right"
+" select first buffer
+autocmd vimenter * wincmd p
+
+" set quick quit commands
+noremap <leader>z :wqa<CR> " quit all windows
+noremap <leader>q :qa!<CR> " quit all windows without saving
 
 " Reduce timeout after <ESC> is recieved.
 set ttimeout
@@ -116,28 +129,8 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 augroup END
 
-" bind K to search word under cursor
-nnoremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
-set expandtab
-
-let g:rspec_command = 'call Send_to_Tmux("NO_RENDERER=true bundle exec rspec {spec}\n")'
-" Mocha command is specific to Product Hunt setup. Probably doesn't work with
-" other apps
-let g:mocha_js_command = 'call Send_to_Tmux("$(npm bin)/mocha --opts spec/javascripts/mocha.opts {spec}\n")'
-let g:rspec_runner = "os_x_iterm"
-
 " Display extra whitespace
 set list listchars=tab:»·,trail:·
-
-" CtrlP include
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
-" Show hidden dot files in NERDTree
-let NERDTreeShowHidden=1
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -167,7 +160,6 @@ set t_Co=256
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark " or light
 
-
 " Numbers
 set number
 set numberwidth=5
@@ -177,12 +169,6 @@ set undodir=~/.vim/undo/
 set undofile
 set undolevels=1000
 set undoreload=10000
-
-:nnoremap <expr> y (v:register ==# '"' ? '"+' : '') . 'y'
-:nnoremap <expr> yy (v:register ==# '"' ? '"+' : '') . 'yy'
-:nnoremap <expr> Y (v:register ==# '"' ? '"+' : '') . 'Y'
-:xnoremap <expr> y (v:register ==# '"' ? '"+' : '') . 'y'
-:xnoremap <expr> Y (v:register ==# '"' ? '"+' : '') . 'Y'
 
 " Tab completion
 " will insert tab at beginning of line,
@@ -202,12 +188,6 @@ inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 " Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 
-" Get off my lawn - helpful when learning Vim :)
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
-
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
@@ -222,51 +202,19 @@ let g:tmux_navigator_no_mappings = 1
 " Details: https://github.com/christoomey/vim-tmux-navigator#it-doesnt-work-in-neovim-specifically-c-h
 nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+nnoremap <c-h> <C-w><C-h>
+nnoremap <c-j> <C-w><C-j>
+nnoremap <c-k> <C-w><C-k>
+nnoremap <c-l> <C-w><C-l>
 
 " configure syntastic syntax checking to check on open as well as save
 let g:syntastic_ruby_checkers = ['mri']
 let g:syntastic_enable_highlighting=0
 
-" Remove trailing whitespace on save for ruby files.
-function! s:RemoveTrailingWhitespaces()
-  "Save last cursor position
-  let l = line(".")
-  let c = col(".")
-
-  %s/\s\+$//ge
-
-  call cursor(l,c)
-endfunction
-
-au BufWritePre * :call <SID>RemoveTrailingWhitespaces()
-
-" cmd n, cmd p for fwd/backward in search
-map <C-n> :cn<CR>
-map <C-p> :cp<CR>
-
-" Create related file (Rails Spec file if missing). :AC
-function! s:CreateRelated()
-  let related = rails#buffer().alternate_candidates()[0]
-  call s:Open(related)
-endfunction
-
-function! s:Open(file)
-  exec('vsplit ' . a:file)
-endfunction
-
-command! AC :call <SID>CreateRelated()
-execute pathogen#infect()
-call pathogen#helptags()
-
 " absolute/relative numbering toggle function
 function! NumberToggle()
   if(&relativenumber == 1)
-    set number
+    set relativenumber!
   else
     set relativenumber
   endif
@@ -275,12 +223,18 @@ endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
 " absolute numbers of lost focus
-:au FocusLost * :set number
+:au FocusLost * :set relativenumber!
 :au FocusGained * :set relativenumber
 
 " absolute numbers in insert mode
-autocmd InsertEnter * :set number
+autocmd InsertEnter * :set relativenumber!
 autocmd InsertLeave * :set relativenumber
 
 " copy to mac clipboard
 vmap '' :w !pbcopy<CR><CR>
+
+" vimwiki config
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                       \ 'syntax': 'markdown', 'ext': '.md'},
+                       \ {'path':'~/scratchbox/vimwiki/markdown/','ext':'.md','syntax':'markdown'},
+                       \ {"path":"~/scratchbox/vimwiki/wiki/"}]

@@ -102,6 +102,13 @@ source $ZSH/oh-my-zsh.sh
 # Turn on history saving after quitting shell
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 
+### ALIASES ###
+
 # exa aliases
 alias l="exa -l"
 alias la="exa -la"
+
+# postgresql
+alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+

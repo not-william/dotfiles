@@ -12,11 +12,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " vimwiki and vim-zettel
-Plugin 'vimwiki/vimwiki'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'michal-h21/vim-zettel'
-
 Plugin 'vim-airline/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'

@@ -11,12 +11,12 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" vimwiki and vim-zettel
 Plugin 'vim-airline/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'python-mode/python-mode'
+Plugin 'ycm-core/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -38,6 +38,12 @@ runtime macros/matchit.vim
 
 set ttyfast
 set lazyredraw
+
+" disable rope completion in python-mode in favour of YCM
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope_completion = 0
+let g:pymode_rope_complete_on_dot = 0
+
 
 " Toggle nerdtree with F10
 map <Leader>t :NERDTreeToggle<CR>

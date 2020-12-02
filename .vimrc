@@ -17,6 +17,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'python-mode/python-mode'
 Plugin 'ycm-core/YouCompleteMe'
+Plugin 'psf/black'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -239,3 +240,15 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
                        \ 'syntax': 'markdown', 'ext': '.md'},
                        \ {'path':'~/scratchbox/vimwiki/markdown/','ext':'.md','syntax':'markdown'},
                        \ {"path":"~/scratchbox/vimwiki/wiki/"}]
+
+" run black formatter on save
+autocmd BufWritePre *.py execute ':Black'
+
+
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab

@@ -11,13 +11,14 @@ done
 echo Installing fonts...
 cp $dir/Arimo* $HOME/Library/fonts
 
-# install pathogen for vim
-echo Installing pathogen for vim...
-mkdir -p ~/.vim/autoload ~/.vim/bundle
-curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+# moving tmux theme
+mkdir $HOME/.tmux-themes
+cp $dir/basic.tmuxtheme $HOME/.tmux-themes/basic.tmuxtheme
 
-echo Installing vimwiki
-git clone https://github.com/vimwiki/vimwiki.git ~/.vim/bundle/
+# install pathogen for vim
+# echo Installing pathogen for vim...
+# mkdir -p ~/.vim/autoload ~/.vim/bundle
+# curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 echo Installing vundle...
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim

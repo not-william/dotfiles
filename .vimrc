@@ -11,17 +11,13 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" vimwiki and vim-zettel
-Plugin 'vimwiki/vimwiki'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'michal-h21/vim-zettel'
-
 Plugin 'vim-airline/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'python-mode/python-mode'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'psf/black'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -43,6 +39,12 @@ runtime macros/matchit.vim
 
 set ttyfast
 set lazyredraw
+
+" disable rope completion in python-mode in favour of YCM
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope_completion = 0
+let g:pymode_rope_complete_on_dot = 0
+
 
 " Toggle nerdtree with F10
 map <Leader>t :NERDTreeToggle<CR>
@@ -238,3 +240,15 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
                        \ 'syntax': 'markdown', 'ext': '.md'},
                        \ {'path':'~/scratchbox/vimwiki/markdown/','ext':'.md','syntax':'markdown'},
                        \ {"path":"~/scratchbox/vimwiki/wiki/"}]
+
+" run black formatter on save
+autocmd BufWritePre *.py execute ':Black'
+
+
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab

@@ -121,3 +121,5 @@ alias servers="aws ec2 describe-instances   --query 'Reservations[*].Instances[*
 export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
 export PATH=${PATH}:/Users/$(whoami)/Library/Python/3.8/bin # This is for some special python packages.
 
+# git
+alias gl="git log --graph --full-history --all --color --date=short --pretty=format:\"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%ad %s\""

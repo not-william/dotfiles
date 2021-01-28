@@ -18,6 +18,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'python-mode/python-mode'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'psf/black'
+Plugin 'dracula/vim', { 'name': 'dracula' }
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -33,6 +34,10 @@ filetype plugin on
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 set shell=/bin/bash
 runtime macros/matchit.vim
@@ -252,3 +257,4 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+

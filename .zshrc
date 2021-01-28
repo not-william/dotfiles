@@ -1,3 +1,5 @@
+ZSH_DISABLE_COMPFIX="true"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +10,7 @@ export ZSH="/Users/will/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="dracula"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -117,3 +119,7 @@ export PATH=${PATH}:/Users/$(whoami)/Library/Python/3.8/bin # This is for some s
 
 # git
 alias gl="git log --graph --full-history --all --color --date=short --pretty=format:\"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%ad %s\""
+
+# note.sh config
+export NOTE_DIR=~/Sync/Notes/Journal
+export EDITOR=vim

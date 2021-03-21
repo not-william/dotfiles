@@ -17,8 +17,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'python-mode/python-mode'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'psf/black'
 Plugin 'dracula/vim', { 'name': 'dracula' }
 
 " All of your Plugins must be added before the following line
@@ -46,13 +44,7 @@ runtime macros/matchit.vim
 set ttyfast
 set lazyredraw
 
-" disable rope completion in python-mode in favour of YCM
-let g:pymode_rope_lookup_project = 0
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
-
-
-" Toggle nerdtree with F10
+" Toggle nerdtree with leader t
 map <Leader>t :NERDTreeToggle<CR>
 " Current file in nerdtree
 map <Leader>c :NERDTreeFind<CR>
@@ -60,8 +52,8 @@ map <Leader>c :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 " load up NERDTree
 autocmd vimenter * NERDTree
-" move NERDTree to the right
-let g:NERDTreeWinPos = "right"
+" move NERDTree to the left
+let g:NERDTreeWinPos = "left"
 " select first buffer
 autocmd vimenter * wincmd p
 

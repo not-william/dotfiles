@@ -128,4 +128,4 @@ alias gl="git log --graph --full-history --all --color --date=short --pretty=for
 
 # note.sh config
 export NOTE_DIR=~/Sync/Notes/Journal
-export EDITOR=vim
+export EDITOR=nvim

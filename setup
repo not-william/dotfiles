@@ -1,25 +1,30 @@
 #!/bin/bash
 
-echo "Making symlinks..."
-dotfiles=(".vimrc" ".zshrc" ".tmux.conf")
-dir="$HOME/code/dotfiles"
-for dotfile in "${dotfiles[@]}";do
- ln -sfv "${dir}/${dotfile}" "$HOME"
-done
+DOTFILES_DIR=$(git rev-parse --show-toplevel)
 
-# Installing fonts...
-echo Installing fonts...
-cp $dir/Arimo* $HOME/Library/fonts
+setup_symlink() {
+    if [[ "$1" == *"/"* ]]; then
+        DIR=$(echo "$1" | grep -o ".*\/")
+        mkdir -p "$HOME/$DIR"
+    fi
+    ln -sfv "$DOTFILES_DIR/$1" "$HOME/$1"
+}
 
-# moving tmux theme
-mkdir $HOME/.tmux-themes
-cp $dir/basic.tmuxtheme $HOME/.tmux-themes/basic.tmuxtheme
+setup_copy() {
+    if [[ "$1" == *"/"* ]]; then
+        DIR=$(echo "$1" | grep -o ".*\/")
+        mkdir -p "$HOME/$DIR"
+    fi
+    cp -rf "$DOTFILES_DIR/$1" "$HOME/$1"
+}
 
-# install pathogen for vim
-# echo Installing pathogen for vim...
-# mkdir -p ~/.vim/autoload ~/.vim/bundle
-# curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+setup_dotfiles() {
+    setup_symlink .zshrc
+    setup_symlink .tmux.conf
+    setup_symlink .config/alacritty/alacritty.yml
+    setup_symlink .config/nvim
+}
 
-echo Installing vundle...
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
+if [ "$1" = 'dotfiles' ]; then
+    setup_dotfiles
+fi

@@ -49,3 +49,9 @@ alias gl="git log --graph --full-history --all --color --date=short --pretty=for
 # note.sh config
 export NOTE_DIR=~/Sync/Notes/Journal
 export EDITOR=nvim
+
+export CDPATH=.:~:~/code
+
+export NOTES=~/Sync/Notes
+export WORKNOTES=~/Sync/Notes/work
+export HOMENOTES=~/Sync/Notes/home

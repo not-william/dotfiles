@@ -86,3 +86,5 @@ font:
   # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
 
+key_bindings:
+  - { key: Key3,     mods: Alt,     chars: "#"                        }

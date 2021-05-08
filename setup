@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -o nounset # error when referencing undefined variable
+set -o errexit # exit when command fails
+
 DOTFILES_DIR=$(git rev-parse --show-toplevel)
 
 setup_symlink() {
@@ -22,9 +25,70 @@ setup_dotfiles() {
     setup_symlink .zshrc
     setup_symlink .tmux.conf
     setup_symlink .config/alacritty/alacritty.yml
+}
+
+install_cli_tools() {
+    echo "Installing alacritty, tmux, ranger, ripgrep"
+    brew install alacritty tmux ranger ripgrep
+    
+}
+
+installnodemac() {
+    echo "Installing node"
+    brew install lua
+    brew install node
+    brew install yarn
+}
+
+installpipmac() {
+	echo "Installing pip"
+	sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+	python3 get-pip.py
+	rm get-pip.py
+}
+
+installpynvim() {
+	echo "Installing pynvim..."
+	pip3 install pynvim --user
+}
+
+installpacker() {
+	echo "Installing packer"
+	git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+}
+
+installueberzug() {
+	which pip3 >/dev/null && pip3 install ueberzug || echo "Not installing ueberzug pip not found"
+}
+
+installlunarvim() {
+	echo "Installing neovim from HEAD"
+	brew install neovim --HEAD
+	installnodemac
+	installpipmac
+	installpynvim
+	installpacker
+	npm install -g tree-sitter-cli
+	installueberzug
     setup_symlink .config/nvim
+}
+
+installnicetohaves() {
+    brew install mpv highlight
 }
 
 if [ "$1" = 'dotfiles' ]; then
     setup_dotfiles
+fi
+
+if [ "$1" = 'cli_tools' ]; then
+    install_cli_tools
+fi
+
+if [ "$1" = 'lunarvim' ]; then
+	installlunarvim
+fi
+
+if [ "$1" = 'nicetohaves' ]; then
+	installnicetohaves
 fi

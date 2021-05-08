@@ -37,17 +37,14 @@ alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.
 # Transmission alias
 alias tsm="transmission-remote"
 
-alias servers="aws ec2 describe-instances   --query 'Reservations[*].Instances[*].{Instance:InstanceId,Type:InstanceType,AZ:Placement.AvailabilityZone,Name:Tags[?Key==\`Name\`]|[0].Value,Project:Tags[?Key==\`project\`]|[0].Value,IP:PublicIpAddress,State:State.Name,CPUcores:CpuOptions.CoreCount,CPUthreads:CpuOptions.ThreadsPerCore}'   --output table"
+alias servers="aws ec2 describe-instances --query 'Reservations[*].Instances[*].{Instance:InstanceId,Type:InstanceType,AZ:Placement.AvailabilityZone,Name:Tags[?Key==\`Name\`]|[0].Value,Project:Tags[?Key==\`project\`]|[0].Value,IP:PublicIpAddress,State:State.Name,CPUcores:CpuOptions.CoreCount,CPUthreads:CpuOptions.ThreadsPerCore}'   --output table"
 
 # Set up PATH
 export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
-export PATH=${PATH}:/Users/$(whoami)/Library/Python/3.8/bin # This is for some special python packages.
 
 # git
 alias gl="git log --graph --full-history --all --color --date=short --pretty=format:\"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%ad %s\""
 
-# note.sh config
-export NOTE_DIR=~/Sync/Notes/Journal
 export EDITOR=nvim
 
 export CDPATH=.:~:~/code

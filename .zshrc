@@ -17,7 +17,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker)
+plugins=(git docker docker-compose fancy-ctrl-z history vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -53,5 +53,5 @@ export EDITOR=nvim
 export CDPATH=.:~:~/code
 
 export NOTES=~/Sync/Notes
-export WORKNOTES=~/Sync/Notes/work
-export HOMENOTES=~/Sync/Notes/home
+export wnotes=~/Sync/Notes/work
+export hnotes=~/Sync/Notes/home

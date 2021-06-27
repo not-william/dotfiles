@@ -88,3 +88,4 @@ font:
 
 key_bindings:
   - { key: Key3,     mods: Alt,     chars: "#"                        }
+  - { key: N,        mods: Command, command: { program: "open", args: ["-n", "/Applications/Alacritty.app"] } }

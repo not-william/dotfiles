@@ -26,10 +26,6 @@ HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 
 ### ALIASES ###
 
-# exa aliases
-alias l="exa -l"
-alias la="exa -la"
-
 # postgresql
 alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
@@ -52,3 +48,38 @@ export CDPATH=.:~:~/code
 export NOTES=~/Sync/Notes
 export wnotes=~/Sync/Notes/work
 export hnotes=~/Sync/Notes/home
+eval "$(pyenv init -)"
+
+heisig () {
+    grep $1 $hnotes/japan-and-japanese/heisig
+}
+
+# pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
+export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
+
+export PATH="$HOME/.config/nvim/bin:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/will/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/will/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/will/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/will/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+python3 $HOME/.scripts/birthday_reminders.py
+
+export PATH="/Users/will/.local/bin:$PATH"

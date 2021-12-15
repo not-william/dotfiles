@@ -83,3 +83,6 @@ unset __conda_setup
 python3 $HOME/.scripts/birthday_reminders.py
 
 export PATH="/Users/will/.local/bin:$PATH"
+
+# add key to ssh agent
+ssh-add -q

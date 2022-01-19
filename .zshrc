@@ -45,7 +45,7 @@ export EDITOR=nvim
 
 export CDPATH=.:~:~/code
 
-export NOTES=~/Sync/Notes
+export notes=~/Sync/Notes
 export wnotes=~/Sync/Notes/work
 export hnotes=~/Sync/Notes/home
 eval "$(pyenv init -)"

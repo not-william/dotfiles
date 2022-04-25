@@ -25,6 +25,7 @@ setup_dotfiles() {
     setup_symlink .zshrc
     setup_symlink .tmux.conf
     setup_symlink .config/alacritty/alacritty.yml
+    setup_symlink .config/nvim
     setup_symlink .scripts/birthday_reminders.py
 }
 

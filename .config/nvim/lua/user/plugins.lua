@@ -47,6 +47,7 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "tpope/vim-fugitive" -- git helpers
   use "tpope/vim-commentary" -- comment out code
+  use "tpope/vim-surround"
 
   -- colourschemes
   use "folke/tokyonight.nvim"

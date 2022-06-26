@@ -169,6 +169,11 @@ _G.packer_plugins = {
     path = "/Users/will/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
+  ["vim-commentary"] = {
+    loaded = true,
+    path = "/Users/will/.local/share/nvim/site/pack/packer/start/vim-commentary",
+    url = "https://github.com/tpope/vim-commentary"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/will/.local/share/nvim/site/pack/packer/start/vim-fugitive",
